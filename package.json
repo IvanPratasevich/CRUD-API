@@ -16,8 +16,9 @@
   "description": "CRUD-API",
   "name": "crud-api",
   "scripts": {
-    "start:dev": "nodemon ./src/index.ts",
-    "start:prod": "tsc && node ./dist/index.js"
+    "start:dev": "nodemon ./src/server.ts",
+    "start:prod": "tsc && node ./dist/server.js",
+    "start:multi": "nodemon ./src/multi.ts"
   },
   "dependencies": {
     "cross-env": "^7.0.3",
