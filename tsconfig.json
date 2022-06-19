@@ -4,7 +4,7 @@
     "module": "commonjs" /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', 'es2020', or 'ESNext'. */,
     "allowJs": true /* Allow javascript files to be compiled. */,
     "checkJs": false /* Report errors in .js files. */,
-    "outDir": "dist" /* Redirect output structure to the directory. */,
+    "outDir": "./dist" /* Redirect output structure to the directory. */,
     "removeComments": true /* Do not emit comments to output. */,
     "downlevelIteration": true /* Provide full support for iterables in 'for-of', spread, and destructuring when targeting 'ES5' or 'ES3'. */,
     "strict": true /* Enable all strict type-checking options. */,
@@ -18,5 +18,5 @@
     "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */,
     "sourceMap": true
   },
-  "exclude": ["node_modules, dist"]
+  "exclude": ["./dist/**/*"]
 }
