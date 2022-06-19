@@ -99,3 +99,36 @@ describe('Second scenario', () => {
     expect(res.statusCode).toEqual(204);
   });
 });
+
+describe('Third scenario', () => {
+  beforeAll((done) => {
+    done();
+  });
+
+  afterAll((done) => {
+    server.close();
+    done();
+  });
+
+  it('Errors on the server side that occur during the processing of a request should be handled and processed correctly', async () => {
+    const invalidData = '{ username: John, age: 15, hobbies: [dogs, 231, 1] }';
+    const res = await request(server).post('/api/users').send(invalidData);
+    expect(res.statusCode).toEqual(500);
+    expect(res.body.message).toEqual('Internal error');
+  });
+
+  it('Requests to non-existing endpoints should be handled', async () => {
+    const res = await request(server).delete(`/api/users/non-existing/endpoint`);
+    expect(res.statusCode).toEqual(404);
+    expect(res.body.message).toEqual('Route was not found');
+  });
+
+  it('Should return error if userId is invalid', async () => {
+    const invalidId = 'abc1234TYUI';
+    const res = await request(server)
+      .put(`/api/users/${invalidId}`)
+      .send({ username: 'Josh', age: 18, hobbies: ['reading', 'games'] });
+    expect(res.statusCode).toEqual(400);
+    expect(res.body.message).toEqual('User id is invalid');
+  });
+});
