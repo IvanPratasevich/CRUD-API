@@ -21,7 +21,7 @@
   "name": "crud-api",
   "scripts": {
     "start:dev": "nodemon ./src/server.ts",
-    "start:prod": "tsc && node ./dist/server.js",
+    "start:prod": "tsc && node ./dist/src/server.js",
     "start:multi": "nodemon ./src/multi.ts",
     "test": "jest"
   },
