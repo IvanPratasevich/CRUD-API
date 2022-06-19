@@ -10,7 +10,7 @@ git@github.com:IvanPratasevich/CRUD-API.git -b dev
 npm install
 ```
 3) Run ```npm run start:dev``` to start application in development mode or ```npm run start:prod``` to start application in production mode.
-To use horizontal scaling for application run ```npm run start:multi```.
+To use horizontal scaling for application run ```npm run start:multi```. Run ```npm run test``` to start tests.
 
 ## Endpoints:
 - **GET** api/users is used to get all persons  
