@@ -5,7 +5,7 @@ import { getReqData, uuidValidate } from './utils/utils';
 import { IncomingMessage, ServerResponse } from 'http';
 const SERVER_PORT = process.env.PORT;
 
-const server = http.createServer(async (req: IncomingMessage, res: ServerResponse) => {
+export const server = http.createServer(async (req: IncomingMessage, res: ServerResponse) => {
   if (req.url === '/api/users' && req.method === 'GET') {
     try {
       const users = await new Users().getUsers();
