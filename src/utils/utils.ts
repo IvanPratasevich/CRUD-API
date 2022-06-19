@@ -27,3 +27,25 @@ export const getReqData = (req: IncomingMessage, res: ServerResponse): Promise<I
     }
   });
 };
+const checkArrayForStrings = (hobbies: any): boolean => {
+  for (let i = 0; i < hobbies.length; i++) {
+    if (typeof hobbies[i] != 'string') {
+      return false;
+    }
+  }
+  return true;
+};
+
+export const isUserHasProperties = (usersData: any) => {
+  if (
+    !Array.isArray(usersData.hobbies) ||
+    typeof usersData.age !== 'number' ||
+    typeof usersData.username !== 'string'
+  ) {
+    return false;
+  }
+  if (usersData.hobbies.length === 0) return false;
+  const arrayValidation = checkArrayForStrings(usersData.hobbies);
+  if (!arrayValidation) return false;
+  return true;
+};
