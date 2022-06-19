@@ -132,3 +132,41 @@ describe('Third scenario', () => {
     expect(res.body.message).toEqual('User id is invalid');
   });
 });
+
+describe('Fourth scenario', () => {
+  let user: IUser;
+
+  beforeAll((done) => {
+    done();
+  });
+
+  afterAll((done) => {
+    server.close();
+    done();
+  });
+
+  it('Should not create new user', async () => {
+    const res = await request(server).post('/api/users').send({ username: 25, age: true, hobbies: [] });
+    expect(res.statusCode).toEqual(400);
+    expect(res.body.message).toEqual('Request body does not contain required fields or wrong data type for fields');
+  });
+
+  it('Should create new user', async () => {
+    const res = await request(server)
+      .post('/api/users')
+      .send({ username: 'John', age: 40, hobbies: ['dogs'] });
+    user = res.body;
+    expect(res.statusCode).toEqual(201);
+    expect(res.body.username).toEqual('John');
+    expect(res.body.age).toEqual(40);
+    expect(res.body.hobbies).toEqual(['dogs']);
+  });
+
+  it('Should not update user', async () => {
+    const res = await request(server)
+      .put(`/api/users/${user.id}`)
+      .send({ username: 19, age: '25', hobbies: [true, 'cats'] });
+    expect(res.statusCode).toEqual(400);
+    expect(res.body.message).toEqual('Request body does not contain required fields or wrong data type for fields');
+  });
+});
